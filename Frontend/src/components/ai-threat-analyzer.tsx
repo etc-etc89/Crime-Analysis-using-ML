@@ -6,6 +6,11 @@ import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 
+const API_BASE =
+  (import.meta.env.VITE_API_URL as string | undefined) ||
+  (import.meta.env.VITE_KSP_API as string | undefined) ||
+  'https://stillworking-mlmodel.hf.space';
+
 interface PredictionResult {
   status: string;
   predicted_threat_level: string;
@@ -39,8 +44,7 @@ export function AIThreatAnalyzer() {
     setError(null);
     
     try {
-      // NOTE: Update this URL to your production backend URL when deploying
-      const response = await fetch('http://127.0.0.1:8000/api/v1/predict-risk', {
+      const response = await fetch(`${API_BASE}/api/v1/predict-risk`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(inputs)
@@ -180,7 +184,7 @@ export function AIThreatAnalyzer() {
               <strong>Error:</strong> {error}
             </p>
             <p className="text-xs text-red-300 mt-2">
-              Make sure the backend server is running at http://127.0.0.1:8000
+              Make sure the deployed backend is reachable at https://stillworking-mlmodel.hf.space
             </p>
           </div>
         )}
