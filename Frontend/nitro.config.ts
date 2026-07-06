@@ -1,9 +1,7 @@
-import { defineNitroConfig } from "nitropack/config";
-
-export default defineNitroConfig({
+export default {
   output: {
     dir: 'dist',
     serverDir: 'dist/server',
     publicDir: 'dist/public'
   }
-});
+};
