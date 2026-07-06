@@ -1,10 +1,11 @@
-// Centralized API + mock fallback so the UI is fully functional even if the
-// FastAPI backend at localhost:8000 isn't reachable from the deployed preview.
+// Centralized API + mock fallback so the UI is fully functional in both local
+// development and deployed environments.
 
 export const API_BASE =
   (typeof window !== "undefined" && (window as any).__KSP_API__) ||
+  (import.meta.env.VITE_API_URL as string | undefined) ||
   (import.meta.env.VITE_KSP_API as string | undefined) ||
-  "http://localhost:8000";
+  "https://stillworking-mlmodel.hf.space";
 
 export interface OverviewStats {
   total_incidents: number;
