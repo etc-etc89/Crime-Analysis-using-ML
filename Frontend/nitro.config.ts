@@ -5,3 +5,6 @@ export default {
     publicDir: 'dist/public'
   }
 };
+nitro: {
+  preset: 'node-server'
+}
