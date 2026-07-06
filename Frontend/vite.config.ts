@@ -11,6 +11,10 @@ export default defineConfig({
   nitro: true, 
   
   tanstackStart: {
+    // 🛑 THIS IS THE MAGIC LINE: Disable SSR to force a static Site (SPA) build
+    // This generates the index.html that Catalyst's Web Client requires.
+    ssr: false,
+    
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
     server: { 
