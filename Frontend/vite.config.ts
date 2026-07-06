@@ -13,6 +13,14 @@ export default defineConfig({
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
-    server: { entry: "server" },
+    server: { 
+      entry: "server",
+      // Tell Nitro to output to 'dist' so Catalyst/Slate can find it
+      output: {
+        dir: 'dist',
+        serverDir: 'dist/server',
+        publicDir: 'dist/public'
+      }
+    },
   },
 });
